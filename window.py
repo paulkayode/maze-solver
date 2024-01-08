@@ -30,4 +30,4 @@ class Window:
     def draw_cell(self,cell, fill_colour):
         cell.draw(self.canva,fill_colour)
     def draw_move(self ,c1, c2, undo=False):
-        c1.draw_move(self.canva, c1,c2, undo)
+        c1.draw_move(self.canva,c2, undo)
