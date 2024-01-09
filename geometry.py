@@ -1,5 +1,8 @@
 from tkinter import Tk, BOTH, Canvas
 
+from config import *
+
+
 class Point:
     def __init__(self,x = 0,y = 0):
         self.x = x
@@ -17,7 +20,7 @@ class Line:
         canvas.pack()
 
 class Cell:
-    def __init__(self,x1 = 0,y1 = 0,x2 = 0, y2 = 0, has_top_wall = True, has_right_wall =True , has_bottom_wall = True, has_left_wall = True):
+    def __init__(self,x1 = 0,y1 = 0,x2 = 0, y2 = 0, has_top_wall = True, has_right_wall =True , has_bottom_wall = True, has_left_wall = True, visited = False):
         self.has_top_wall = has_top_wall
         self.has_right_wall = has_right_wall
         self.has_bottom_wall = has_bottom_wall
@@ -26,6 +29,7 @@ class Cell:
         self.__y1 = y1
         self.__x2 = x2
         self.__y2 = y2
+        self.visited = visited
     def set_x1(self,x1):
         self.__x1 = x1
     def set_x2(self,x2):
@@ -51,12 +55,20 @@ class Cell:
     def draw(self, canva, fill_colour):
         if self.has_top_wall:
            self._draw_top(canva,fill_colour)
+        else:
+            self._draw_top(canva, back_ground_color)
         if self.has_bottom_wall:
             self._draw_bottom(canva, fill_colour)
+        else:
+            self._draw_bottom(canva, back_ground_color)
         if self.has_left_wall:
             self._draw_left(canva, fill_colour)
+        else:
+            self._draw_left(canva, back_ground_color)
         if self.has_right_wall:
            self._draw_right(canva, fill_colour)
+        else:
+            self._draw_right(canva, back_ground_color)
     
     def _draw_top(self, canva,fill_colour):
         x1,y1 = self.get_top_left()

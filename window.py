@@ -1,6 +1,9 @@
 from tkinter import Tk, BOTH, Canvas
 from geometry import Line
 
+from config import *
+
+
 class Window:
 
     def __init__(self ,width, height):
@@ -8,7 +11,7 @@ class Window:
         self.__height = height
         self.__root = Tk()
         self.__root.title("Maze Solver")
-        self.canva = Canvas(width = width, height = height, bg = "white")
+        self.canva = Canvas(width = width, height = height, bg = back_ground_color)
         self.canva.pack()
         self.__is_running = False
         self.__root.protocol("WM_DELETE_WINDOW", self.close)
