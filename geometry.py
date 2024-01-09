@@ -17,7 +17,7 @@ class Line:
         canvas.pack()
 
 class Cell:
-    def __init__(self,x1,y1,x2, y2, has_top_wall = False, has_right_wall = False, has_bottom_wall = False, has_left_wall = False):
+    def __init__(self,x1 = 0,y1 = 0,x2 = 0, y2 = 0, has_top_wall = True, has_right_wall =True , has_bottom_wall = True, has_left_wall = True):
         self.has_top_wall = has_top_wall
         self.has_right_wall = has_right_wall
         self.has_bottom_wall = has_bottom_wall
@@ -26,7 +26,15 @@ class Cell:
         self.__y1 = y1
         self.__x2 = x2
         self.__y2 = y2
-    
+    def set_x1(self,x1):
+        self.__x1 = x1
+    def set_x2(self,x2):
+        self.__x2 = x2
+    def set_y1(self,y1):
+        self.__y1 = y1
+    def set_y2(self,y2):
+        self.__y2 = y2
+     
     def get_bottom_right(self):
         if self.__y1 > self.__y2:
             return (self.__x1,self.__y1)
