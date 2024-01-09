@@ -1,17 +1,10 @@
 from window import Window
 from maze import Maze
-from geometry import *
 from config import *
 
 def main():
-    
-    maze = Maze(5,5,10,10, 39,39, Window(800,600))
-    maze._create_cells()
-    maze._break_entrance_and_exit()
-    maze._break_walls_r(0,0)
-    maze._reset_cells_visited()
-    maze._solve_r(0,0)
-    maze.win.wait_for_close()
+    maze = Maze(5,5,18,25, 30,30, Window(800,600))
+    maze.solve()
     return 0
 
 

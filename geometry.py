@@ -122,7 +122,7 @@ class Cell:
         if undo:
             line.draw(canva, "grey")
         else:
-            line.draw(canva, "red")
+            line.draw(canva, "purple")
             
         
 

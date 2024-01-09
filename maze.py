@@ -6,6 +6,14 @@ from config import *
 
 
 class Maze:
+    def solve(self):
+        self._create_cells()
+        self._break_entrance_and_exit()
+        self._break_walls_r(0,0)
+        self._reset_cells_visited()
+        self._solve_r(0,0)
+        self.win.wait_for_close()
+    
     def __init__(self, x1, y1, num_rows, num_cols, cell_size_x, cell_size_y, win = None,seed = None):
         self.__x1 = x1
         self.__y1 = y1
@@ -39,11 +47,11 @@ class Maze:
         self._cells[i][j].set_y2( self.__y1 + ((i+1) * self.__cell_size_y))
         if self.win is not None:
             self.win.draw_cell(self._cells[i][j],wall_color)
-            self._animate()
+            self._animate(building_time)
     
-    def _animate(self):
+    def _animate(self, sleeping_time):
         self.win.redraw()
-        time.sleep(0.05)
+        time.sleep(sleeping_time)
     
 
     
@@ -53,7 +61,7 @@ class Maze:
         if self.win is not None:
             self.win.draw_cell(self._cells[0][0],wall_color)
             self.win.draw_cell(self._cells[-1][-1],wall_color)
-            self._animate()
+            self._animate(building_time)
 
     def _break_walls_r(self,i,j):
         current = self._cells[i][j]
@@ -76,6 +84,7 @@ class Maze:
             if len(values) == 0:
                 if self.win is not None:
                     self.win.draw_cell(current, wall_color)
+                    self._animate(building_time)
                 return
             z = random.choice(values)
             zx = i + dx[z]
@@ -102,7 +111,7 @@ class Maze:
     def _solve_r(self,i,j):
         if i == self.get_num_rows() -1 and  j == self.get_num_cols()-1:
             return True
-        self._animate()
+        self._animate(solving_time)
         current = self._cells[i][j]
         current.visited = True
         found = False
