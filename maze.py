@@ -18,6 +18,12 @@ class Maze:
         if seed is not None:
             random.seed(seed)
     
+    def get_num_rows(self):
+        return self.__num_rows
+    
+    def get_num_cols(self):
+        return self.__num_cols
+    
     def _create_cells(self):
         x1 = self.__x1
         y1 = self.__y1
@@ -38,6 +44,8 @@ class Maze:
     def _animate(self):
         self.win.redraw()
         time.sleep(0.05)
+    
+
     
     def _break_entrance_and_exit(self):
         self._cells[0][0].has_left_wall = False
@@ -66,7 +74,8 @@ class Maze:
                     and not self._cells[zx][zy].visited):
                     values.append(z)
             if len(values) == 0:
-                self.win.draw_cell(current, wall_color)
+                if self.win is not None:
+                    self.win.draw_cell(current, wall_color)
                 return
             z = random.choice(values)
             zx = i + dx[z]
@@ -84,5 +93,11 @@ class Maze:
                 self._cells[zx][zy].has_right_wall = False
                 self._cells[i][j].has_left_wall = False
             self._break_walls_r(zx,zy)
+
+    def _reset_cells_visited(self):
+        for i in range(0,self.__num_rows):
+            for j in range(0,self.__num_cols):
+                self._cells[i][j].visited = False
+
             
 
