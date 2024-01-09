@@ -26,16 +26,18 @@ class Maze:
         self._cells[i][j].set_x2(self.__x1 + ((j+1) * self.__cell_size_x))
         self._cells[i][j].set_y1( self.__y1 + (i * self.__cell_size_y) )
         self._cells[i][j].set_y2( self.__y1 + ((i+1) * self.__cell_size_y))
-        self.win.draw_cell(self._cells[i][j],"black")
-        self._animate()
+        if self.win is not None:
+            self.win.draw_cell(self._cells[i][j],"black")
+            self._animate()
     
     def _animate(self):
         self.win.redraw()
         time.sleep(0.05)
     
-    def _BREAK_ENTRANCE_AND_EXIT(self):
+    def _break_entrance_and_exit(self):
         self._cells[0][0].has_left_wall = False
         self._cells[-1][-1]. has_right_wall = False
-        self._cells[0][0]._draw_left(self.win.canva, "white")
-        self._cells[-1][-1]._draw_right(self.win.canva, "white")
-        self._animate()
+        if self.win is not None:
+            self._cells[0][0]._draw_left(self.win.canva, "white")
+            self._cells[-1][-1]._draw_right(self.win.canva, "white")
+            self._animate()
