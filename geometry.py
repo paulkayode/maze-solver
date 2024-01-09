@@ -49,28 +49,48 @@ class Cell:
 
 
     def draw(self, canva, fill_colour):
+        if self.has_top_wall:
+           self._draw_top(canva,fill_colour)
+        if self.has_bottom_wall:
+            self._draw_bottom(canva, fill_colour)
+        if self.has_left_wall:
+            self._draw_left(canva, fill_colour)
+        if self.has_right_wall:
+           self._draw_right(canva, fill_colour)
+    
+    def _draw_top(self, canva,fill_colour):
         x1,y1 = self.get_top_left()
         x2,y2 = self.get_bottom_right()
-        if self.has_top_wall:
-            p1 = Point(x1,y1)
-            p2 = Point(x2,y1)
-            line = Line(p1,p2)
-            line.draw(canva, fill_colour)
-        if self.has_bottom_wall:
-            p1 = Point(x1,y2)
-            p2 = Point(x2,y2)
-            line = Line(p1,p2)
-            line.draw(canva, fill_colour)
-        if self.has_left_wall:
-            p1 = Point(x1,y1)
-            p2 = Point(x1,y2)
-            line = Line(p1,p2)
-            line.draw(canva, fill_colour)
-        if self.has_right_wall:
-            p1 = Point(x2,y1)
-            p2 = Point(x2,y2)
-            line = Line(p1,p2)
-            line.draw(canva, fill_colour)
+        p1 = Point(x1,y1)
+        p2 = Point(x2,y1)
+        line = Line(p1,p2)
+        line.draw(canva, fill_colour)
+
+    def _draw_bottom(self,canva, fill_colour):
+        x1,y1 = self.get_top_left()
+        x2,y2 = self.get_bottom_right()
+        p1 = Point(x1,y2)
+        p2 = Point(x2,y2)
+        line = Line(p1,p2)
+        line.draw(canva, fill_colour)
+
+    def _draw_left(self,canva ,fill_colour):
+        x1,y1 = self.get_top_left()
+        x2,y2 = self.get_bottom_right()
+        p1 = Point(x1,y1)
+        p2 = Point(x1,y2)
+        line = Line(p1,p2)
+        line.draw(canva, fill_colour)
+
+    def _draw_right(self,canva ,fill_colour):
+        x1,y1 = self.get_top_left()
+        x2,y2 = self.get_bottom_right()
+        p1 = Point(x2,y1)
+        p2 = Point(x2,y2)
+        line = Line(p1,p2)
+        line.draw(canva, fill_colour)
+
+    
     def draw_move(self,canva, to_cell, undo=False):
         ax1,ay1 =  self.get_top_left()
         ax2, ay2 = self.get_bottom_right()

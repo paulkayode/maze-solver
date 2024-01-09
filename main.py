@@ -1,16 +1,14 @@
 from window import Window
+from maze import Maze
 from geometry import *
 
-win = Window(800, 600)
 def main():
     
-    c1 = Cell(750, 550,800 ,600, False, True, True,True)
-    c2 = Cell(50,5, 100, 50, True, True, False,False)
-    win.draw_cell(c1,"red")
-    win.draw_cell(c2, "black")
-    win.draw_move(c1,c2)
-
-    win.wait_for_close()
+    maze = Maze(5,5,13,20, 39,39, Window(800,600))
+    maze._create_cells()
+    
+    maze._BREAK_ENTRANCE_AND_EXIT()
+    maze.win.wait_for_close()
     return 0
 
 
