@@ -1,2 +1,2 @@
 # maze-solver
-maze solver sinulation
+maze solver simulation
